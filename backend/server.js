@@ -1,4 +1,6 @@
 import express from 'express'
+// import session from 'express-session'
+// import MongoStore from 'connect-mongo'
 import mongoose from 'mongoose';
 import userRouter from './routes/userAuth.js';
 import recruiterRouter from './routes/recruiterAuth.js';
@@ -14,11 +16,20 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// const store = MongoStore.create({
+//     mongoUrl:dbURL,
+//     crypto:{
+//         secret:process.env.SECRET
+//     },
+//     touchAfter:24 * 3600,
+// });
+
 app.use('/auth',userRouter);
 app.use('/auth/recruiter',recruiterRouter);
 app.use('/api/jobs',jobRouter);
 
-const DatabaseURL = "mongodb://127.0.0.1:27017/jobapplication" ;
+// const DatabaseURL = "mongodb://127.0.0.1:27017/jobapplication" ;
+const dbURL = process.env.ATLASDB_URL;
 
 main()
 .then(()=>{
@@ -28,7 +39,7 @@ main()
     console.log('database connection failed',err);    
 });
 async function main(){
-    await mongoose.connect(DatabaseURL);
+    await mongoose.connect(dbURL);
 }
 app.get('/',(req,res)=>{
     res.send("data initialize");
