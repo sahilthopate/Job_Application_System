@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 export default function ChangePassword() {
     const navigate = useNavigate();
-    const API = import.meta.env.VITE_API_URL;
 
     const [formData, setFormData] = useState({
         newPassword: "",
@@ -37,7 +36,7 @@ export default function ChangePassword() {
             const token = localStorage.getItem("token");
 
             const res = await axios.post(
-                `${API}/auth/changepassword`,
+                "http://localhost:5000/auth/changepassword",
                 {
                     newPassword: formData.newPassword,
                     confirmPassword: formData.confirmPassword,

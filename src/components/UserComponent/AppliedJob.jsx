@@ -6,14 +6,13 @@ import { toast } from "react-toastify";
 export default function AppliedJob() {
     const [appliedJob, setAppliedJob] = useState([]);
     const navigate = useNavigate();
-    const API = import.meta.env.VITE_API_URL;
     useEffect(() => {
         const getAppliedJob = async () => {
             try {
                 const token = localStorage.getItem("token");
 
                 const res = await axios.get(
-                    `${API}/auth/applied-jobs`,
+                    "http://localhost:5000/auth/applied-jobs",
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,

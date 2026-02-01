@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 export default function ViewApplications() {
     const [applications, setApplications] = useState([]);
     const navigate = useNavigate();
-    const API = import.meta.env.VITE_API_URL;
+
     const fetchApplications = async () => {
         try {
             const token = localStorage.getItem("token");
@@ -17,7 +17,7 @@ export default function ViewApplications() {
             }
 
             const res = await axios.get(
-                `${API}/auth/recruiter/applications`,
+                `http://localhost:5000/auth/recruiter/applications`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -36,7 +36,7 @@ export default function ViewApplications() {
             const token = localStorage.getItem("token");
 
             await axios.put(
-                `${API}/auth/recruiter/applications/${applicationId}`,
+                `http://localhost:5000/auth/recruiter/applications/${applicationId}`,
                 { status },
                 {
                     headers: {

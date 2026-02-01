@@ -6,7 +6,6 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 export default function Login() {
  const navigate = useNavigate();
   const [role, setRole] = useState("user");
-   const API = import.meta.env.VITE_API_URL;
 
   const [userData, setUserData] = useState({
     email: "",
@@ -33,12 +32,12 @@ export default function Login() {
       let res;
       if (role === "user") {
         res = await axios.post(
-          `${API}/auth/login`,
+          "http://localhost:5000/auth/login",
           userData
         );
       } else {
         res = await axios.post(
-          `${API}/auth/recruiter/recruiter-login`,
+          "http://localhost:5000/auth/recruiter/recruiter-login",
           recruiterdata
         );
       }

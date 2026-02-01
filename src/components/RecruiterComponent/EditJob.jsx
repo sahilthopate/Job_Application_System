@@ -6,7 +6,6 @@ import { toast } from "react-toastify";
 export default function EditJob() {
     const { jobId } = useParams();
     const navigate = useNavigate();
-    const API = import.meta.env.VITE_API_URL;
     const [jobData, setJobData] = useState({
         jobTitle: "",
         jobDescription: "",
@@ -26,7 +25,7 @@ export default function EditJob() {
             }
 
             const res = await axios.get(
-                `${API}/auth/recruiter/jobs`,
+                `http://localhost:5000/auth/recruiter/jobs`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -59,7 +58,7 @@ export default function EditJob() {
             const token = localStorage.getItem("token");
 
             await axios.post(
-                `${API}/auth/recruiter/${jobId}/edit`,
+                `http://localhost:5000/auth/recruiter/${jobId}/edit`,
                 jobData,
                 {
                     headers: {

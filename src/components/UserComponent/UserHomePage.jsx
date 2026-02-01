@@ -7,7 +7,6 @@ export default function UserHomePage() {
     const [jobs, setJobs] = useState([]);
     const [appliedJobIds, setAppliedJobIds] = useState([]);
     const [showProfileMenu, setShowProfileMenu] = useState(false);
-    const API = import.meta.env.VITE_API_URL;
 
     const navigate = useNavigate();
     useEffect(() => {
@@ -15,7 +14,7 @@ export default function UserHomePage() {
             try {
                 const token = localStorage.getItem('token');
                 const res = await axios.get(
-                    `${API}/auth/jobs`,
+                    'http://localhost:5000/auth/jobs',
                     {
                         headers: {
                             Authorization: `Bearer ${token}`
@@ -45,7 +44,7 @@ export default function UserHomePage() {
             }
 
             const res = await axios.post(
-                `${API}/auth/jobs/apply/${jobId}`,
+                `http://localhost:5000/auth/jobs/apply/${jobId}`,
                 {},
                 {
                     headers: {

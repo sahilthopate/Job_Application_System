@@ -6,7 +6,6 @@ import { toast } from "react-toastify";
 export default function UserProfile() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-    const API = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
   useEffect(() => {
     const fetchProfile = async () => {
@@ -14,7 +13,7 @@ export default function UserProfile() {
         const token = localStorage.getItem("token");
 
         const res = await axios.get(
-          `${API}/auth/profile`,
+          "http://localhost:5000/auth/profile",
           {
             headers: {
               Authorization: `Bearer ${token}`,
