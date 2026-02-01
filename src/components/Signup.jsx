@@ -41,7 +41,7 @@ export default function SignUpPage() {
         toast.success(res.data.message);
       } else {
         const res = await axios.post(
-          "http://localhost:5000/auth/signup",
+          "http://localhost:5000/auth/recruiter/recruiter-signup",
           recruiterdata
         );
         toast.success(res.data.message);
@@ -49,6 +49,8 @@ export default function SignUpPage() {
 
       navigate("/login");
     } catch (error) {
+      console.log(error);
+      
       toast.error(error.response?.data?.message || "Signup failed");
     }
   };
@@ -105,7 +107,7 @@ export default function SignUpPage() {
             <div>
               <input name="companyName" placeholder="Company Name" onChange={handleRecruiterChange} className="w-full text-center py-1 my-2 border rounded" required />
               <input name="email" type="email" placeholder="Company Email" onChange={handleRecruiterChange} className="w-full text-center py-1 my-2 border rounded" required />
-              <input name="password" type="password" placeholder="Password" onChange={handleRecruiterChange} className="w-full text-center py-1 my-2 border rounded" required /> <input name="phone" placeholder="Contact Number" onChange={handleRecruiterChange} className="w-full text-center py-1 my-2 border rounded" required />
+              <input name="password" type="password" placeholder="Password" onChange={handleRecruiterChange} className="w-full text-center py-1 my-2 border rounded" required /> 
             </div>
           )
         }
