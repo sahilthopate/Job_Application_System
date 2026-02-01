@@ -33,8 +33,8 @@ main()
 async function main(){
     await mongoose.connect(dbURL);
 }
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve("dist/index.html"));
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
 
 app.listen(5000,()=>{
