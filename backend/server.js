@@ -21,7 +21,7 @@ app.use('/auth/recruiter',recruiterRouter);
 app.use('/api/jobs',jobRouter);
 
 // const DatabaseURL = "mongodb://127.0.0.1:27017/jobapplication" ;
-const dbURL = process.env.ATLASDB_URL;
+const dbURL = import.meta.env.VITE_API_URL;
 
 main()
 .then(()=>{
