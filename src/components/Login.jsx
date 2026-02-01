@@ -6,7 +6,7 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 export default function Login() {
  const navigate = useNavigate();
   const [role, setRole] = useState("user");
-  const API = process.env.VITE_API_URL;
+  const API = import.meta.env.VITE_API_URL;
   const [userData, setUserData] = useState({
     email: "",
     password: "",
