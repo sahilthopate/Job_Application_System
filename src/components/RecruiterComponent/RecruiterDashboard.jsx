@@ -6,7 +6,9 @@ import axios from "axios";
 export default function RecruiterDashboard() {
   const navigate = useNavigate();
   const [jobsCount, setJobsCount] = useState(0);
-  const [applicationCount, setApplicationCount] = useState(0); const recruiterId = localStorage.getItem("recruiterId");
+  const [applicationCount, setApplicationCount] = useState(0); 
+  const recruiterId = localStorage.getItem("recruiterId");
+  const API = import.meta.env.VITE_API_URL;
   const fetchMyJobs = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -17,7 +19,7 @@ export default function RecruiterDashboard() {
       }
 
       const res = await axios.get(
-        `http://localhost:5000/auth/recruiter/jobs`,
+        `${API}/auth/recruiter/jobs`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -41,7 +43,7 @@ export default function RecruiterDashboard() {
       }
 
       const res = await axios.get(
-        `http://localhost:5000/auth/recruiter/applications`,
+        `${API}/auth/recruiter/applications`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

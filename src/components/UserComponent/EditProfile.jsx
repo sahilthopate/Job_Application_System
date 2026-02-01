@@ -18,6 +18,7 @@ export default function EditProfile() {
   });
 
   const [loading, setLoading] = useState(false);
+    const API = import.meta.env.VITE_API_URL;
 
   /* ================= FETCH USER DATA ================= */
   useEffect(() => {
@@ -25,7 +26,7 @@ export default function EditProfile() {
       try {
         const token = localStorage.getItem("token");
 
-        const res = await axios.get("http://localhost:5000/auth/profile", {
+        const res = await axios.get(`${API}/auth/profile`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -82,7 +83,7 @@ export default function EditProfile() {
       };
 
       const res = await axios.put(
-        "http://localhost:5000/auth/profile",
+        `${API}/auth/profile`,
         payload,
         {
           headers: {

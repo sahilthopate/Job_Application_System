@@ -28,6 +28,7 @@ export default function CreateJob() {
     });
     
     const navigate = useNavigate();
+    const API = import.meta.env.VITE_API_URL;
     const [skillInput, setSkillInput] = useState("");
 
     const handleChange = (e) => {
@@ -69,7 +70,7 @@ export default function CreateJob() {
             const token = localStorage.getItem("token");
             
             await axios.post(
-                "http://localhost:5000/api/jobs/create-post",
+                `${API}/api/jobs/create-post`,
                 jobData,
                 {
                     headers: {

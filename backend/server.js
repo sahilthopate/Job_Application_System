@@ -16,14 +16,6 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// const store = MongoStore.create({
-//     mongoUrl:dbURL,
-//     crypto:{
-//         secret:process.env.SECRET
-//     },
-//     touchAfter:24 * 3600,
-// });
-
 app.use('/auth',userRouter);
 app.use('/auth/recruiter',recruiterRouter);
 app.use('/api/jobs',jobRouter);

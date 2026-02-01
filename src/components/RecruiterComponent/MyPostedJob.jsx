@@ -9,6 +9,7 @@ export default function MyPostedJob() {
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
     const {setJobsCount} = useContext(Recruiter);
+    const API = import.meta.env.VITE_API_URL;
 
     const fetchMyJobs = async () => {
         try {
@@ -20,7 +21,7 @@ export default function MyPostedJob() {
             }
 
             const res = await axios.get(
-                `http://localhost:5000/auth/recruiter/jobs`,
+            `${API}/auth/recruiter/jobs`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -52,7 +53,7 @@ export default function MyPostedJob() {
             const token = localStorage.getItem("token");
 
             await axios.delete(
-                `http://localhost:5000/auth/recruiter/jobs/${jobId}`,
+                `${API}/auth/recruiter/jobs/${jobId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
