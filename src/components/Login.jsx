@@ -121,6 +121,9 @@ export default function Login() {
         <div className="text-center mt-4">
           <span>Didn't have an account ?</span><Link to='/signup' className="text-blue-400 underline">Sign up</Link>
         </div>
+        <div className="text-center mt-4 text-blue-400 underline">
+          <Link to='/forgot-pass'>Forgot Password?</Link>
+        </div>
       </form>
     </div>
   );

@@ -7,29 +7,30 @@ export default function UserProfile() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+
+  const fetchProfile = async () => {
+    try {
+      const token = localStorage.getItem("token");
+
+      const res = await axios.get(
+        "http://localhost:5000/auth/profile",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      setUser(res.data.user);
+    } catch (error) {
+      console.log(error);
+      toast.error("Failed to load profile");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const token = localStorage.getItem("token");
-
-        const res = await axios.get(
-          "http://localhost:5000/auth/profile",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-
-        setUser(res.data.user);
-      } catch (error) {
-        console.log(error);
-        toast.error("Failed to load profile");
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchProfile();
   }, []);
 
@@ -124,7 +125,6 @@ export default function UserProfile() {
   );
 }
 
-/* Reusable Components */
 
 function Section({ title, children }) {
   return (
@@ -140,8 +140,8 @@ function Section({ title, children }) {
 function Info({ label, value }) {
   return (
     <div className="flex justify-between border-b pb-1 text-sm">
-      <span className="text-gray-500">{label}</span>
-      <span className="font-medium text-gray-800">{value}</span>
+      <span className="text-gray-800">{label}</span>
+      <span className="font-medium text-gray-500">{value}</span>
     </div>
   );
 }

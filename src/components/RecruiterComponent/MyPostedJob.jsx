@@ -62,12 +62,10 @@ export default function MyPostedJob() {
 
             toast.success("Job deleted successfully");
 
-            // ✅ Update UI instantly
             setMyJobData((prev) =>
                 prev.filter((job) => job._id !== jobId)
             );
 
-            // ✅ Update context count
             setJobsCount((prev) => prev - 1);
 
         } catch (error) {
@@ -113,27 +111,22 @@ export default function MyPostedJob() {
                             key={job._id}
                             className="bg-white rounded-xl shadow hover:shadow-lg transition p-6"
                         >
-                            {/* Job Title */}
                             <h2 className="text-xl font-semibold text-gray-800 mb-2">
                                 {job.jobTitle}
                             </h2>
 
-                            {/* Location & Salary */}
                             <p className="text-sm text-gray-500 mb-3">
                                 {job.location || "Remote"} • ₹{job.salary || "Not Disclosed"}
                             </p>
 
-                            {/* Description */}
                             <p className="text-gray-600 text-sm line-clamp-3 mb-4">
                                 {job.jobDescription}
                             </p>
 
-                            {/* Status Badge */}
                             <span className="inline-block px-3 py-1 text-xs rounded-full bg-blue-100 text-blue-700 mb-4">
                                 Active
                             </span>
 
-                            {/* Actions */}
                             <div className="flex justify-between items-center mt-4">
                                 <button 
                                     className="text-blue-600 hover:underline text-sm cursor-pointer"

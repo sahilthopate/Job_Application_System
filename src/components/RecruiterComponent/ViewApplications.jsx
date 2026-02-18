@@ -51,7 +51,6 @@ export default function ViewApplications() {
                 : "Candidate Rejected successfully"
             );
 
-            // Update UI instantly
             setApplications((prev) =>
                 prev.map((app) =>
                     app._id === applicationId
@@ -94,7 +93,6 @@ export default function ViewApplications() {
                             key={app._id}
                             className="bg-white p-6 rounded-xl shadow hover:shadow-lg transition"
                         >
-                            {/* Applicant Info */}
                             <div className="mb-4">
                                 <h3 className="text-xl font-semibold text-gray-800">
                                     👤 {app.userId?.firstName} {app.userId?.lastName}
@@ -104,7 +102,6 @@ export default function ViewApplications() {
                                 </p>
                             </div>
 
-                            {/* Job Info */}
                             <div className="mb-4">
                                 <p className="font-semibold text-blue-600">
                                     📄 {app.jobId?.jobTitle}
@@ -114,7 +111,6 @@ export default function ViewApplications() {
                                 </p>
                             </div>
 
-                            {/* Status */}
                             <div className="mb-4">
                                 <span
                                     className={`px-3 py-1 rounded-full text-sm font-semibold
@@ -131,7 +127,6 @@ export default function ViewApplications() {
 
                             </div>
 
-                            {/* Actions */}
                             <div className="flex gap-3">
                                 <button
                                     className="flex-1 bg-green-600 text-white py-2 cursor-pointer rounded-lg hover:bg-green-700 transition disabled:bg-gray-300"

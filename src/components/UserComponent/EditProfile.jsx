@@ -19,7 +19,6 @@ export default function EditProfile() {
 
   const [loading, setLoading] = useState(false);
 
-  /* ================= FETCH USER DATA ================= */
   useEffect(() => {
     const fetchProfile = async () => {
       try {
@@ -52,7 +51,6 @@ export default function EditProfile() {
     fetchProfile();
   }, []);
 
-  /* ================= HANDLE CHANGE ================= */
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -60,7 +58,6 @@ export default function EditProfile() {
     });
   };
 
-  /* ================= SUBMIT ================= */
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -157,7 +154,6 @@ export default function EditProfile() {
   );
 }
 
-/* ================= REUSABLE INPUT ================= */
 
 function Input({ label, ...props }) {
   return (

@@ -491,6 +491,7 @@ const userChangePassword = async (req, res) => {
     }
 
 }
+
 export default
     {
         userSignUp,

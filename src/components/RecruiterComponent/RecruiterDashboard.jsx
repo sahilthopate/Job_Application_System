@@ -5,6 +5,8 @@ import axios from "axios";
 
 export default function RecruiterDashboard() {
   const navigate = useNavigate();
+  const [shortlistedCount, setShortlistedCount] = useState(0);
+  const [rejectedCount, setRejectedCount] = useState(0);
   const [jobsCount, setJobsCount] = useState(0);
   const [applicationCount, setApplicationCount] = useState(0); const recruiterId = localStorage.getItem("recruiterId");
   const fetchMyJobs = async () => {
@@ -34,8 +36,8 @@ export default function RecruiterDashboard() {
   const fetchApplications = async () => {
     try {
       const token = localStorage.getItem("token");
-          
-      if ( !token) {
+
+      if (!token) {
         toast.error("Please login again");
         return;
       }
@@ -52,17 +54,68 @@ export default function RecruiterDashboard() {
       setApplicationCount(res.data.applications.length);
     } catch (error) {
       console.log(error);
-      
+
       toast.error("Failed to load applied student data");
     }
   };
 
+  const shortlistedApplication = async () => {
+    try {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        toast.error("Please login again");
+        return;
+      }
+
+      const res = await axios.get(
+        `http://localhost:5000/auth/recruiter/applications`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }
+        }
+      );
+      const shortlisted = res.data.applications.filter(
+        app => app.status === 'Shortlisted'
+      );
+      setShortlistedCount(shortlisted.length);
+    } catch (error) {
+      toast.error('Failed to load Shortlisted Student Count');
+    }
+  }
+
+
+  const rejectedStudent = async () => {
+    try {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        toast.error("Please login again");
+        return;
+      }
+
+      const res = await axios.get(
+        `http://localhost:5000/auth/recruiter/applications`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }
+        }
+      );
+      const rejected = res.data.applications.filter(
+        app => app.status === 'Rejected'
+      );
+      setRejectedCount(rejected.length);
+    } catch (error) {
+      toast.error('Failed to load Shortlisted Student Count');
+    }
+  }
   useEffect(() => {
     fetchMyJobs();
-  }, []);
-
-  useEffect(() => {
     fetchApplications();
+    shortlistedApplication();
+    rejectedStudent();
   }, []);
 
   return (
@@ -105,16 +158,13 @@ export default function RecruiterDashboard() {
         </ul>
       </aside>
 
-      {/* Main Content */}
       <main className="flex-1 p-8">
 
-        {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold">Welcome, Recruiter 👋</h1>
           <p className="text-gray-600">Manage jobs and applicants efficiently</p>
         </div>
 
-        {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
           <div className="bg-white p-6 rounded-lg shadow">
             <h3 className="text-gray-500">Total Jobs</h3>
@@ -128,16 +178,15 @@ export default function RecruiterDashboard() {
 
           <div className="bg-white p-6 rounded-lg shadow">
             <h3 className="text-gray-500">Shortlisted</h3>
-            <p className="text-3xl font-bold text-purple-600">8</p>
+            <p className="text-3xl font-bold text-purple-600">{shortlistedCount}</p>
           </div>
 
           <div className="bg-white p-6 rounded-lg shadow">
             <h3 className="text-gray-500">Rejected</h3>
-            <p className="text-3xl font-bold text-purple-600">8</p>
+            <p className="text-3xl font-bold text-purple-600">{rejectedCount}</p>
           </div>
         </div>
 
-        {/* Job List */}
         <div className="bg-white rounded-lg shadow p-6">
           <h2 className="text-xl font-bold mb-4">Recently Posted Jobs</h2>
 

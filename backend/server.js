@@ -20,8 +20,8 @@ app.use('/auth',userRouter);
 app.use('/auth/recruiter',recruiterRouter);
 app.use('/api/jobs',jobRouter);
 
-// const DatabaseURL = "mongodb://127.0.0.1:27017/jobapplication" ;
-const dbURL = process.env.ATLASDB_URL;
+const DatabaseURL = "mongodb://127.0.0.1:27017/jobapplication" ;
+// const dbURL = process.env.ATLASDB_URL;
 
 main()
 .then(()=>{
@@ -31,7 +31,7 @@ main()
     console.log('database connection failed',err);    
 });
 async function main(){
-    await mongoose.connect(dbURL);
+    await mongoose.connect(DatabaseURL);
 }
 app.get('/',(req,res)=>{
     res.send("data initialize");

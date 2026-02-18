@@ -16,10 +16,6 @@ const applicationSchema = new mongoose.Schema({
     ref: "Recruiter",
     required: true
   },
-  // resume: {
-  //   type: String,
-  //   required: true
-  // },
   status: {
     type: String,
     enum: ["Applied", "Shortlisted", "Rejected"],

@@ -174,7 +174,7 @@ const recruiterVerifyOTP = async (req, res) => {
         if (!recruiter) {
             res.status(400).json(
                 {
-                    message: 'user not found'
+                    message: 'Recruiter not found'
                 }
             );
         }

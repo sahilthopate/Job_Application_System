@@ -13,6 +13,9 @@ import UserProfile from "./components/UserComponent/UserProfile";
 import EditProfile from "./components/UserComponent/EditProfile";
 import ChangePassword from "./components/UserComponent/ChangePassword";
 import ProtectedRoute from "./ProtectedRoutes";
+import ForgotPassword from "./components/ForgotPassword";
+import VerifyOTP from "./components/VerifyOTP";
+import ResetPassword from "./components/ResetPassword";
 function App() {
 
   return (
@@ -22,6 +25,9 @@ function App() {
         <Route path='/' element={<Login />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
+        <Route path="/forgot-pass" element={<ForgotPassword />} />
+        <Route path="/verify-otp" element={<VerifyOTP />} />
+        <Route path="/reset-password" element={<ResetPassword/>} />
 
         {/*Users Routes*/}
         <Route element={<ProtectedRoute allowedRole='user'/>}>

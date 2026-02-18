@@ -9,26 +9,27 @@ export default function UserHomePage() {
     const [showProfileMenu, setShowProfileMenu] = useState(false);
 
     const navigate = useNavigate();
-    useEffect(() => {
-        const fetchJobs = async () => {
-            try {
-                const token = localStorage.getItem('token');
-                const res = await axios.get(
-                    'http://localhost:5000/auth/jobs',
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`
-                        },
-                    },
-                );
-                setJobs(res.data.jobs);
-                setAppliedJobIds(res.data.appliedJobIds);
-            } catch (error) {
-                console.log(error);
-                toast.error("Failed to load jobs");
-            }
-        };
 
+    const fetchJobs = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            const res = await axios.get(
+                'http://localhost:5000/auth/jobs',
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    },
+                },
+            );
+            setJobs(res.data.jobs);
+            setAppliedJobIds(res.data.appliedJobIds);
+        } catch (error) {
+            console.log(error);
+            toast.error("Failed to load jobs");
+        }
+    };
+
+    useEffect(() => {
         fetchJobs();
     }, []);
 
@@ -127,7 +128,7 @@ export default function UserHomePage() {
                                         toast.success("Logout Successfully");
                                         navigate("/login");
                                     }}
-                                    >
+                                >
                                     ➤ Logout
                                 </li>
 
